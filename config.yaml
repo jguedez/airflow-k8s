@@ -1,0 +1,12 @@
+# Copyright 2021 jguedez
+# See LICENSE file for licensing details.
+
+options:
+  database_name:
+    default: airflow
+    description: Name to be used for the metadata database (during db creation)
+    type: string
+  webserver_username:
+    default: airflow
+    description: Username created for access to the Web UI (during db initialisation)
+    type: string

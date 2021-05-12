@@ -1,0 +1,5 @@
+# Copyright 2021 jguedez
+# See LICENSE file for licensing details.
+
+get-webserver-password:
+  description: Returns the generated webserver password

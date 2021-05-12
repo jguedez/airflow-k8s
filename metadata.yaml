@@ -1,0 +1,43 @@
+# Copyright 2021 jguedez
+# See LICENSE file for licensing details.
+name: airflow-k8s
+description: >
+  Charm for Juju to deploy and manage Apache Airflow in a Kubernetes environment.
+summary: >
+  Airflow is a platform created by the community to programmatically author,
+  schedule and monitor workflows.
+
+  This charm manages Apache Airflow in Kubernetes environments.
+
+containers:
+  airflow-init:
+    resource: airflow
+
+  airflow-webserver:
+    resource: airflow
+    mounts:
+      - storage: logs
+        location: /opt/airflow/logs
+
+  airflow-scheduler:
+    resource: airflow
+    mounts:
+      - storage: logs
+        location: /opt/airflow/logs
+
+resources:
+  airflow:
+    type: oci-image
+    description: OCI image for apache/airflow (https://hub.docker.com/r/apache/airflow)
+
+storage:
+  logs:
+    type: filesystem
+    location: /opt/airflow/logs
+
+requires:
+  db:
+    interface: pgsql
+    limit: 1  # Most charms only handle a single PostgreSQL Application.
+  ingress:
+    interface: ingress
