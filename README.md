@@ -1,4 +1,4 @@
-# airflow-k8s
+# Airflow Operator
 
 ## Description
 
@@ -13,7 +13,9 @@ PostgreSQL for that purpose. One options would be to use
 [postgresql-k8s](https://charmhub.io/postgresql-k8s/), and then a relation to it:
 
 ```
-juju relate airflow-k8s:db postgresql-k8s:db
+juju deploy airflow
+juju deploy postgresql-k8s
+juju relate airflow:db postgresql-k8s:db
 ```
 
 Once the database becomes available the charm will initialise the airflow database and
@@ -29,7 +31,7 @@ The charm supports the `ingress` relation, which can be used with
 
 ```
 juju deploy nginx-ingress-integrator
-juju relate airflow-k8s:ingress nginx-ingress-integrator:ingress
+juju relate airflow:ingress nginx-ingress-integrator:ingress
 ```
 
 This charm will currently run an instance of the airflow webserver and scheduler using the

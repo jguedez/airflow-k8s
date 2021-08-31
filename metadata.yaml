@@ -1,6 +1,7 @@
 # Copyright 2021 jguedez
 # See LICENSE file for licensing details.
-name: airflow-k8s
+name: airflow
+display-name: Airflow
 description: >
   Charm for Juju to deploy and manage Apache Airflow in a Kubernetes environment.
 summary: >
