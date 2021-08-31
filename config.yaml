@@ -9,6 +9,7 @@ options:
   external_hostname:
     default: ""
     description: The external hostname for the web UI for airflow. Defaults to the deployed juju application name.
+    type: string
   webserver_username:
     default: airflow
     description: Username created for access to the Web UI (during db initialisation)
