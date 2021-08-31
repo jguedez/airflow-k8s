@@ -50,7 +50,7 @@ class AirflowCharm(CharmBase):
 
         # ingress relation events
         self.ingress = IngressRequires(self, {
-            "service-hostname": "airflow.juju",
+            "service-hostname": self.config['external_hostname'] or self.app.name,
             "service-name": self.app.name,
             "service-port": 8080
         })
@@ -208,7 +208,10 @@ class AirflowCharm(CharmBase):
         if event.master:
             # store the data in both the peers relation and the stored bag
             conn_str = event.master
-            db_uri = f"postgresql+psycopg2://{conn_str.user}:{conn_str.password}@{conn_str.host}:{conn_str.port}/{conn_str.dbname}"
+            db_uri = (
+                f"postgresql+psycopg2://{conn_str.user}:{conn_str.password}"
+                f"@{conn_str.host}:{conn_str.port}/{conn_str.dbname}"
+            )
             self._stored.db_uri = db_uri
 
             self.unit.status = ActiveStatus()

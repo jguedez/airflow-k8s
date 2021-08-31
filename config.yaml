@@ -6,6 +6,10 @@ options:
     default: airflow
     description: Name to be used for the metadata database (during db creation)
     type: string
+  external_hostname:
+    default: ""
+    description: The external hostname for the web UI for airflow. Defaults to the deployed juju application name.
+    type: string
   webserver_username:
     default: airflow
     description: Username created for access to the Web UI (during db initialisation)
